@@ -1,6 +1,14 @@
 import Caver from "caver-js";
 import CounterABI from "../abi/CounterABI.json";
+import {
+  ACCESS_KEY_ID,
+  SECRET_ACCESS_KEY,
+  CHAIND_ID,
+  COUNT_CONTRACT_ADDRESS,
+} from "../constants";
 
+require("dotenv").config();
+const PRIVATE_KEY = process.env.REACT_APP_PRIVATE_KEY;
 const option = {
   headers: [
     {
@@ -22,10 +30,7 @@ const caver = new Caver(
     option
   )
 );
-const CountContract = new caver.contract(
-  JSON.pars(CounterABI),
-  COUNT_CONTRACT_ADDRESS
-);
+const CountContract = new caver.contract(CounterABI, COUNT_CONTRACT_ADDRESS);
 export const readCount = async () => {
   const _count = await CountContract.methods.count().call();
   console.log(_count);
@@ -41,7 +46,7 @@ export const getBalance = (address) => {
   });
 };
 
-const setCount = async (newCount) => {
+export const setCount = async (newCount) => {
   // 사용할 account 설정
   try {
     console.log(PRIVATE_KEY);

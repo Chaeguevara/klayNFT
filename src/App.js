@@ -1,5 +1,7 @@
 import logo from "./logo.svg";
+import { getBalance, setCount } from "./api/UseCaver";
 import "./App.css";
+import React, { useState } from "react";
 
 require("dotenv").config();
 
@@ -9,10 +11,14 @@ const PRIVATE_KEY = process.env.REACT_APP_PRIVATE_KEY;
 // 2. caver.js 이용해서 스마트 컨트랙트 연동하기
 // 3. 가져온 스마트 컨트랙트 실해결과 웹에 표현하기
 function App() {
-  console.log(ACCESS_KEY_ID);
-  console.log(SECRET_ACCESS_KEY);
-
-  readCount();
+  //console.log(ACCESS_KEY_ID);
+  //console.log(SECRET_ACCESS_KEY);
+  const [balance, setBalance] = useState("0");
+  const onPressButton2 = (balance) => {
+    //console.log("hi!!");
+    setBalance("10");
+  };
+  //readCount();
   getBalance("0x03e4168d8133eb91ae850bc1d7985d76d7ec295c");
   return (
     <div className="App">
@@ -24,6 +30,14 @@ function App() {
             setCount(1);
           }}
         />
+        <button
+          onClick={() => {
+            onPressButton2();
+          }}
+        >
+          Hi
+        </button>
+        <p>{balance}</p>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
