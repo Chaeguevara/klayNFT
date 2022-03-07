@@ -26,6 +26,9 @@ function App() {
   const onClickGetAddress = () => {
     KlipApi.getAddress(setQrValue);
   };
+  const onClickSetCount = () => {
+    KlipApi.setCount(2000, setQrValue);
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -35,6 +38,13 @@ function App() {
           }}
         >
           주소가져오기
+        </button>
+        <button
+          onClick={() => {
+            onClickSetCount();
+          }}
+        >
+          카운트값 변경
         </button>
         <br />
         <br />
