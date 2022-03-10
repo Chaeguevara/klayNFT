@@ -29,7 +29,9 @@ export const setCount = (count, setQrValue) => {
           .then((res) => {
             if (res.data.result) {
               console.log(`[RESULT] ${JSON.stringify(res.data.result)}`);
-              clearInterval(timerId);
+              if (res.data.result.status === "success") {
+                clearInterval(timerId);
+              }
             }
           });
       }, 1000);
