@@ -37,7 +37,7 @@ export const setCount = (count, setQrValue) => {
       }, 1000);
     });
 };
-export const getAddress = (setQrValue) => {
+export const getAddress = (setQrValue, callback) => {
   axios
     .post(A2P_API_PREPARE_URL, {
       bapp: {
@@ -57,6 +57,7 @@ export const getAddress = (setQrValue) => {
           .then((res) => {
             if (res.data.result) {
               console.log(`[RESULT] ${JSON.stringify(res.data.result)}`);
+              callback(res.data.result.klaytn_address); //return klaytn address as callback
               clearInterval(timerId);
             }
           });
